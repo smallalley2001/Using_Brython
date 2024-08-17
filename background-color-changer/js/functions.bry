@@ -1,0 +1,24 @@
+#Import the modules
+from browser import document
+import random
+
+#Function to change background color
+def change_background_color(ev):
+
+    #Get random values for r, g and b
+    r = random.randint(0,255)
+    g = random.randint(0,255)
+    b = random.randint(0,255)
+    rgb = [r,g,b]
+
+    #Get the body element by id
+    #Because just one to target one element
+    body = document['body']
+    #Modify the style attributes    
+    body.style.background = f'rgba({r},{g},{b},1'
+
+    #Display the color value in the webpage
+    document['color_value'].text = f'Color: {rgb}'
+
+#Bind the button click to the change_background_color function
+document['color_btn'].bind('click', change_background_color)

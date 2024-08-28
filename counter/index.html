@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Counter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="shortcut icon" href="./img/favicon.ico">  
+</head>
+
+<script type="text/javascript" src="./js/brython.js"></script>
+<script type="text/javascript" src="./js/brython_stdlib.js"></script>
+
+<body id="body" onLoad="brython()">
+
+<div class="align-center">
+    <h3>Counter</h3>
+
+    <label id="counter" namer="counter">0</label>
+
+    <br/><br/>
+
+    <button id="reduce_btn" class="btn" title="Reduce"><</button>
+    <button id="reset_btn" class="btn" title="Reset">0</button>
+    <button id="increase_btn" class="btn" title="Increase">></button>
+
+</div>
+
+<script type="text/python3" src="./bry/functions.bry"></script>
+
+</body>
+</html>

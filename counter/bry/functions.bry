@@ -1,0 +1,31 @@
+from browser import document
+
+COUNT = 0
+
+def counter(ev):
+
+    print(ev)    #print out to the console
+
+    global COUNT    #define global variable
+
+    if ev.target.id == 'increase_btn':    #check id depending on which element triggers the event
+    
+        COUNT += 1
+
+    elif ev.target.id == 'reduce_btn':
+    
+        COUNT -= 1
+        
+    else:
+    
+        COUNT = 0
+
+    document['counter'].text = COUNT    #change content of element
+
+#get all elements with 'button' tag and bind each element to the click function
+buttons = document.get(selector='button')
+
+for button in buttons:
+
+    button.bind('click', counter)
+

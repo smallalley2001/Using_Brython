@@ -1,0 +1,85 @@
+/* General page styles */
+body {
+    background-color: white;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Start content at the top */
+    height: 100vh;
+}
+
+/* Center content horizontally */
+.align-center {
+    text-align: center;
+    margin-top: 20px; /* Add spacing from the top */
+}
+
+/* Buttons */
+.btn {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #90EE90; /* Light green background */
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #80e080; /* Slightly darker green on hover */
+}
+
+.btn-one-row {
+    display: inline-block;
+}
+
+#battle-grid {
+    position: relative;
+    width: 1002px; /* Width for 20 cells with 0.5px border */
+    height: 1002px; /* Height for 20 cells with 0.5px border */
+    background-color: white; /* Background behind the grid */
+    border: 1px solid white; /* Optional outer border for the grid */
+}
+
+#deployment-grid {
+    position: relative;
+    width: 1002px; /* Width for 20 cells with 0.5px border */
+    height: 1002px; /* Height for 20 cells with 0.5px border */
+    background-color: white; /* Background behind the grid */
+    border: 1px solid white; /* Optional outer border for the grid */
+}
+
+.grid-cell {
+    position: absolute;
+    width: 50px; /* Explicit cell width */
+    height: 50px; /* Explicit cell height */
+    background-color: #059b2b; /* Default green background for cells */
+    border: 0.1px solid gray; /* Thin border for each cell */
+    box-sizing: border-box; /* Includes border in the cell size calculation */
+}
+
+.grid-row {
+  display: flex;
+}
+
+.col-number, .row-number {
+    font-weight: bold;
+    background-color: #f3f3f3;
+}
+
+#ship-dock {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.ship {
+    width: 50px; /* Width of one grid cell */
+    height: calc(50px * attr(data-size)); /* Scaled based on ship size */
+    background-color: blue;
+    cursor: grab;
+}
+
+

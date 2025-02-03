@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Battleship Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <link rel="stylesheet" href="./css/styles.css">  
+  <link rel="shortcut icon" href="./img/battleship.png">   
+</head>
+
+<script type="text/javascript" src="./js/brython.js"></script>
+<script type="text/javascript" src="./js/brython_stdlib.js"></script>
+
+<body onLoad="brython()">
+
+    <div class="align-center">
+        <img src="./img/battleship.png" alt="battleship" width="100px" height="60px">
+        <br/>        
+        <h3>Battleships</h3>
+        <h5>Version 1.0</h5>
+
+        <!-- Ship Dock Table -->
+        <table id="ship-dock" style="width: 100%; text-align: center;">
+            <!-- First Row of Ships -->
+            <tr>
+                <td>
+                    <div class="ship" id="ship-dock-1" data-size="6" style="background-image: url('./img/ship_1.png'); width: 300px; height: 50px;"></div>
+                </td>
+                <td>
+                    <div class="ship" id="ship-dock-2" data-size="8" style="background-image: url('./img/ship_2.png'); width: 80px; height: 30px;"></div>
+                </td>
+                <td>
+                    <div class="ship" id="ship-dock-3" data-size="5" style="background-image: url('./img/ship_3.png'); width: 50px; height: 30px;"></div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                Command
+                </td>
+                <td>
+                Command
+                </td>
+                <td>
+                Command
+                </td>     
+            </tr>            
+            <!-- Orientation Dropdowns -->
+            <tr>
+                <td>
+                    Orientate ship to:
+                    <select id="orientation-1">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+                <td>
+                    Orientate ship to:
+                    <select id="orientation-2">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+                <td>
+                    Orientate ship to:
+                    <select id="orientation-3">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+            </tr>            
+            
+            <tr>
+                <td>
+                Move to Row:
+                    <select id="ship_1_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_1_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>
+                <td>
+                Move to Row:
+                    <select id="ship_2_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_2_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>
+                <td>
+                Move to Row:
+                    <select id="ship_3_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_3_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>
+                   
+            </tr>                     
+
+            <tr>
+                <td>
+                    <button id="ship_1_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>
+                <td>
+                    <button id="ship_2_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>
+                <td>
+                    <button id="ship_3_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>                                
+            </tr>
+
+            <!-- Repeat for the second row of ships -->
+            <tr>
+                <td>
+                    <div class="ship" id="ship-dock-4" data-size="4" style="background-image: url('./img/ship_4.png'); width: 40px; height: 30px;"></div>
+                </td>
+                <td>
+                    <div class="ship" id="ship-dock-5" data-size="5" style="background-image: url('./img/ship_5.png'); width: 50px; height: 30px;"></div>
+                </td>
+                <td>
+                    <div class="ship" id="ship-dock-6" data-size="3" style="background-image: url('./img/ship_6.png'); width: 30px; height: 30px;"></div>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                Command
+                </td>
+                <td>
+                Command
+                </td>
+                <td>
+                Command
+                </td>     
+            </tr>            
+            <!-- Orientation Dropdowns -->
+            <tr>
+                <td>
+                    Orientate ship to:
+                    <select class="orientation-dropdown" id="orientation-4">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+                <td>
+                    Orientate ship to:
+                    <select class="orientation-dropdown" id="orientation-5">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+                <td>
+                    Orientate ship to:
+                    <select class="orientation-dropdown" id="orientation-6">
+                        <option value="0" selected>East (0°)</option>
+                        <option value="90">North (90°)</option>
+                        <option value="180">West (180°)</option>
+                        <option value="270">South (270°)</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Move to Row:
+                    <select id="ship_4_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_4_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>
+                <td>
+                Move to Row:
+                    <select id="ship_5_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_5_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>
+                <td>
+                Move to Row:
+                    <select id="ship_6_row">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+                
+                Col:
+                    <select id="ship_6_col">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                    </select>
+
+                </td>                            
+            </tr>            
+            
+            <tr>
+                <td>
+                    <button id="ship_4_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>
+                <td>
+                    <button id="ship_5_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>
+                <td>
+                    <button id="ship_6_command" class="btn btn-one-row" title="Issue command to ship">Go</button>
+                </td>                                
+            </tr>
+
+
+            
+        </table>
+
+        <br/>
+        Battleship Deployment Map
+        <div id="deployment-grid" style="display: grid; grid-template-rows: repeat(20, auto); grid-template-columns: repeat(20, auto); gap: 2px;"></div>
+
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <input type="checkbox" id="computer_start">
+        <label for="computer_start">Computer Starts</label>
+        <button id="start_battle" class="btn btn-one-row" title="Sart the battle">Start battle</button>
+        <button id="restart_game" class="btn btn-one-row" title="Restart game">Restart game</button>
+        
+        <br/><br/><br/>
+        Battle Map
+        <div id="battle-grid" style="display: grid; grid-template-rows: repeat(20, auto); grid-template-columns: repeat(20, auto); gap: 2px;"></div>
+
+
+        <br/><br/><br/>
+
+        <button id="quit_button" class="btn btn-one-row" title="Quit game.">Quit</button>
+        
+    <br/>
+    </div>
+    <br/><br/>
+    
+<form id="quit_form" action="/battleship"></form>
+
+<script type="text/python3">
+from browser import document, window, html, alert
+
+import random
+
+# Define the list of ship image files and their properties (e.g., width and height in tenths)
+ship_images = [
+    {"name": "ship_1.png", "width": 300, "height": 50, "occupied_grids" : [], "orientation": 0},  # East
+    {"name": "ship_2.png", "width": 400, "height": 50, "occupied_grids" : [], "orientation": 0},  # East
+    {"name": "ship_3.png", "width": 250, "height": 50, "occupied_grids" : [], "orientation": 0},  # East
+    {"name": "ship_4.png", "width": 200, "height": 50, "occupied_grids" : [], "orientation": 0},  # East
+    {"name": "ship_5.png", "width": 250, "height": 50, "occupied_grids" : [], "orientation": 0},  # East
+    {"name": "ship_6.png", "width": 150, "height": 50, "occupied_grids" : [], "orientation": 0}   # East
+]
+
+# Set to keep track of occupied cells by the player
+player_occupied_cells = set()
+player_bomb_deployment = set()
+player_hits = set()
+
+# Global set to store occupied cells for the computer
+computer_occupied_cells = set()
+computer_bomb_deployment = set()
+computer_hits = set()
+
+target_queue = []
+
+game_on = False
+
+# Function to update ship dimensions dynamically
+def update_ship_dimensions():
+    for index, ship in enumerate(ship_images):
+        ship_id = f"ship-dock-{index + 1}"
+        ship_div = document[ship_id]
+        
+        # Set the width and height based on the ship data
+        ship_div.style.width = f"{ship['width']}px"  # Convert tenths to pixels
+        ship_div.style.height = f"{ship['height']}px"  # Convert tenths to pixels
+
+
+def create_battle_grid(id, clickable=False, id_prefix=''):
+    grid_container = document[id]  # Target the specified container
+    
+    cell_size = 50
+    border_size = 0  # Border thickness
+
+    for row in range(0, 21):  # Rows 0 to 20
+        for col in range(0, 21):  # Columns 0 to 20
+            
+            # Calculate x and y positions
+            x = col * (cell_size + border_size)
+            y = row * (cell_size + border_size)
+            
+            # Check if it's the first row or column (labels)
+            if row == 0 and col > 0:
+                # Column number labels
+                label = html.DIV(
+                    str(col),
+                    Class="grid-label",
+                    style={
+                        "width": f"{cell_size}px",
+                        "height": f"{cell_size}px",
+                        "display": "flex",
+                        "align-items": "center",
+                        "justify-content": "center",
+                        "position": "absolute",
+                        "top": f"{y}px",
+                        "left": f"{x}px",
+                        "background-color": "#f3f3f3",
+                        "border": "1px solid #ccc",
+                        "box-sizing": "border-box",
+                    },
+                )
+                grid_container <= label
+            
+            elif col == 0 and row > 0:
+                # Row number labels
+                label = html.DIV(
+                    str(row),
+                    Class="grid-label",
+                    style={
+                        "width": f"{cell_size}px",
+                        "height": f"{cell_size}px",
+                        "display": "flex",
+                        "align-items": "center",
+                        "justify-content": "center",
+                        "position": "absolute",
+                        "top": f"{y}px",
+                        "left": f"{x}px",
+                        "background-color": "#f3f3f3",
+                        "border": "1px solid #ccc",
+                        "box-sizing": "border-box",
+                    },
+                )
+                grid_container <= label
+            
+            elif row > 0 and col > 0:
+                # Regular grid cells
+                cell_id = f"{id_prefix}R{row}C{col}"  # Include id_prefix
+                
+                btn_style = {
+                    "width": f"{cell_size}px",
+                    "height": f"{cell_size}px",
+                    "top": f"{y}px",
+                    "left": f"{x}px",
+                    "position": "absolute",
+                    "padding": 0,
+                    "margin": 0,
+                    "border": "1px solid #ccc",
+                    "box-sizing": "border-box",
+                }
+
+                btn = html.BUTTON(
+                    "",
+                    id=cell_id,  # Use the generated cell_id
+                    Class="grid-cell",
+                    style=btn_style,
+                )
+
+                if clickable:
+                    # Bind to deploy_bomb function
+                    btn.bind("click", lambda e, r=row, c=col: deploy_bomb(r, c))
+                
+                grid_container <= btn
+
+def update_orientation(event):
+    dropdown = event.target
+    ship_id = int(dropdown.id.split("-")[1])  # Get the ship ID from the dropdown's ID
+    new_orientation = int(dropdown.value)    # Get the selected orientation as an integer
+    
+    # Update the orientation in ship_images
+    ship_images[ship_id - 1]["orientation"] = new_orientation
+
+def clear_current_ship_deployment(ship_id):
+    global player_occupied_cells
+
+    # Get the corresponding ship
+    ship = ship_images[ship_id - 1]
+    
+    occupied_cells = ship["occupied_grids"]
+
+    if not occupied_cells:
+        return
+
+    # Clear the cells occupied by the ship
+    for row, col in occupied_cells:
+        cell_id = f"R{row}C{col}"  # Generate cell ID
+        cell = document[cell_id]  # Get the grid cell element
+        cell.style["background-image"] = ""  # Remove the image
+        cell.style["background-color"] = "#059b2b"  # Set the background color
+
+    # Remove the ship's cells from the global set
+    player_occupied_cells.difference_update(occupied_cells)
+
+    # Reset the ship's occupied grids
+    ship["occupied_grids"] = []
+
+def place_ship(event):
+
+    global player_occupied_cells    
+
+    button = event.target
+
+    ship_id = int(button.id.split("_")[1])  # Extract ship ID from button ID
+    
+    #clear current ship deployment
+    clear_current_ship_deployment(ship_id)
+    
+    ship = ship_images[ship_id - 1]  # Get the corresponding ship
+    orientation = ship["orientation"]  # Current orientation (0: East, 1: South, 2: West, 3: North)
+    width_in_cells = ship["width"] // 50  # Number of cells the ship occupies horizontally
+    height_in_cells = ship["height"] // 50  # Number of cells the ship occupies vertically
+
+    # Get the selected grid position (row and column)
+    row = int(document[f"ship_{ship_id}_row"].value)
+    col = int(document[f"ship_{ship_id}_col"].value)  
+
+    # Calculate occupied cells based on orientation
+    occupied_cells = []
+    if orientation == 0:  # East (Horizontal)
+        if col + width_in_cells - 1 > 20:  # Out of bounds
+            alert("Ship placement out of bounds!")
+            return
+        occupied_cells = [(row, c) for c in range(col, col + width_in_cells)]
+    elif orientation == 90:  # South (Vertical, counterclockwise)
+        if row - width_in_cells < 0:  # Out of bounds
+            alert("Ship placement out of bounds!")
+            return
+        occupied_cells = [(r, col) for r in range(row, row - width_in_cells, -1)]
+    elif orientation == 180:  # West (Horizontal, counterclockwise)
+        if col - width_in_cells + 1 < 1:  # Out of bounds
+            alert("Ship placement out of bounds!")
+            return
+        occupied_cells = [(row, c) for c in range(col, col - width_in_cells, -1)]
+    elif orientation == 270:  # North (Vertical, counterclockwise)
+        if row + width_in_cells + 1 > 22:  # Out of bounds
+            alert("Ship placement out of bounds!")
+            return
+        occupied_cells = [(r, col) for r in range(row, row + width_in_cells)]
+        
+    # Check for overlap
+    if any(cell in player_occupied_cells for cell in occupied_cells):
+        alert("Ship placement overlaps with another ship!")
+        return
+
+    # Update ship's occupied_grids and player's occupied cells
+    ship["occupied_grids"] = occupied_cells
+    ship_images[ship_id - 1]["occupied_grids"] = occupied_cells  # Update in the list
+    player_occupied_cells.update(occupied_cells)
+
+    # Display the ship image on the grid
+    grid_container = document["deployment-grid"]
+    for i, (r, c) in enumerate(occupied_cells):
+        cell_id = f"R{r}C{c}"
+        cell = document[cell_id]
+        
+        # Adjust object position for each orientation
+        object_position = ""
+        if orientation == 0:  # East (Horizontal)
+            object_position = f"{-i * 50}px 0px"
+        elif orientation == 90:  # South (Vertical)
+            object_position = f"0px {-i * 50}px"
+        elif orientation == 180:  # West (Horizontal)
+            object_position = f"{-i * 50}px 0px"
+        elif orientation == 270:  # North (Vertical)
+            object_position = f"0px {-i * 50}px"
+
+        object_position = f"{-i * 50}px 0px"
+
+        # Apply the background image and ensure the image is sliced properly
+        cell.style["background-image"] = f"url('./img/{ship['name']}')"
+        cell.style["background-size"] = f"{ship['width']}px {ship['height']}px"
+        cell.style["background-position"] = object_position
+        cell.style["background-repeat"] = "no-repeat"
+        cell.style["transform"] = f"rotate({-orientation}deg)"  # Apply rotation to the image
+        cell.style["width"] = "50px"
+        cell.style["height"] = "50px"
+        cell.style["object-fit"] = "cover"
+
+def computer_deployment():
+    global computer_occupied_cells
+    
+    # Clear any previous deployments
+    computer_occupied_cells.clear()
+    
+    for ship in ship_images:
+
+        placed = False
+        
+        while not placed:
+            # Random orientation
+            orientation = random.choice([0, 90, 180, 270])
+            
+            # Determine ship dimensions based on orientation
+            width_in_cells = ship["width"] // 50
+            height_in_cells = ship["width"] // 50
+            
+            # Random starting position (row, col)
+            row = random.randint(1, 20)
+            col = random.randint(1, 20)
+            
+            occupied_cells = None
+            
+            # Calculate occupied cells based on orientation
+            if orientation == 0:  # East
+            
+                if col + width_in_cells - 1 <= 20:
+                    occupied_cells = [(row, c) for c in range(col, col + width_in_cells)]
+                    
+            elif orientation == 90:  # North
+
+                if row - height_in_cells >= 0:
+                    occupied_cells = [(r, col) for r in range(row - height_in_cells + 1, row + 1)]
+                    
+            elif orientation == 180:  # West
+            
+                if col - width_in_cells >= 0:
+                    occupied_cells = [(row, c) for c in range(col - width_in_cells + 1, col + 1)]
+                    
+            elif orientation == 270:  # South
+            
+                if row + height_in_cells <= 21:
+                    occupied_cells = [(r, col) for r in range(row, row + height_in_cells)]
+
+            # Check for overlap
+            if occupied_cells:
+                if any(cell in computer_occupied_cells for cell in occupied_cells):
+                
+                    placed = False
+                    
+                else:
+                    
+                    computer_occupied_cells.update(occupied_cells)
+                    placed = True
+   
+def start_battle(eent):
+    global game_on
+
+    if len(player_occupied_cells) < 31:
+    
+        alert("You need to deploy all your ships to start the battle!.")
+        
+    else:
+    
+        for i in range (1, 7):
+        
+            document[f'ship_{i}_command'].disabled = True
+    
+        alert("Click on the Battle Grid to deploy bomb!")
+        document['start_battle'].disabled = True
+    
+        game_on = True
+        
+        if document["computer_start"].checked:
+        
+            computer_deploy_bomb()
+
+def computer_deploy_bomb_old():
+    global computer_bomb_deployment, computer_hits
+
+    # Generate a random position
+    row = random.randint(1, 20)
+    col = random.randint(1, 20)
+    position = (row, col)
+    
+    # Ensure the position hasn't already been bombed
+    if position not in computer_bomb_deployment:
+
+        # Add position to bomb deployment tracking
+        computer_bomb_deployment.add(position)
+        
+        # Get the grid cell element
+        cell = document[f"R{row}C{col}"]
+        
+        # Check if it's a hit
+        if position in player_occupied_cells:
+            cell.style["background-image"] = f"url('./img/bomb_2.png')"
+            computer_hits.add(position)
+        else:
+            cell.style["background-image"] = f"url('./img/bomb_1.png')"
+
+    # Check for victory
+    if computer_hits == player_occupied_cells:
+        alert("Computer wins!")
+        window.location.reload()
+
+def computer_deploy_bomb():
+    global computer_bomb_deployment, computer_hits, target_queue
+
+    # If there are targets in the queue, prioritize them
+    if target_queue:
+        position = target_queue.pop(0)
+    else:
+        # Generate a random position otherwise
+        row = random.randint(1, 20)
+        col = random.randint(1, 20)
+        position = (row, col)
+
+    # Ensure the position hasn't already been bombed
+    if position in computer_bomb_deployment:
+        return computer_deploy_bomb()  # Try another cell
+
+    # Add position to bomb deployment tracking
+    computer_bomb_deployment.add(position)
+
+    row, col = position
+    cell = document[f"R{row}C{col}"]
+
+    if position in player_occupied_cells:
+        # Hit: Update UI and add adjacent cells to target queue
+        cell.style["background-image"] = f"url('./img/bomb_2.png')"
+        computer_hits.add(position)
+
+        # Add adjacent cells to target_queue
+        adjacent_positions = [
+            (row - 1, col), (row + 1, col),  # Up, Down
+            (row, col - 1), (row, col + 1),  # Left, Right
+        ]
+        for adj in adjacent_positions:
+            if 1 <= adj[0] <= 20 and 1 <= adj[1] <= 20:  # Ensure valid grid range
+                if adj not in computer_bomb_deployment and adj not in target_queue:
+                    target_queue.append(adj)
+    else:
+        # Miss: Update UI
+        cell.style["background-image"] = f"url('./img/bomb_1.png')"
+
+    # Check for victory
+    if computer_hits == player_occupied_cells:
+        alert("Computer wins!")
+        window.location.reload()
+
+
+def deploy_bomb(r, c):
+    global player_hits
+
+    if game_on:
+        
+        bomb_position = (r,c)
+        # Get the grid cell element
+        cell = document[f"BG_R{r}C{c}"]        
+        
+        if bomb_position in computer_occupied_cells:
+        
+            player_hits.add(bomb_position)
+            cell.style["background-image"] = f"url('./img/bomb_2.png')"            
+        
+        else:
+        
+            cell.style["background-image"] = f"url('./img/bomb_1.png')"
+        
+        player_bomb_deployment.add(bomb_position)
+        cell.disabled = True
+        
+    else:
+    
+        alert("Click the Start Battle button to start the battle!")
+
+    # Check for victory
+    if player_hits == computer_occupied_cells:
+        alert("You wins!")
+        window.location.reload()
+        
+    computer_deploy_bomb()
+
+def restart_game(event):
+
+    """
+    Reloads the current webpage to restart the game.
+    """
+    window.location.reload()
+
+# Quit button action
+def quit(event):
+    document['quit_form'].submit()
+
+# Call the function to update the dimensions
+update_ship_dimensions()
+
+# Call function to create the grid on page load
+create_battle_grid("deployment-grid", clickable=False, id_prefix="")
+
+create_battle_grid("battle-grid", clickable=True, id_prefix="BG_")
+
+# Attach the place_ship function to each ship's button
+for i in range(1, 7):
+    document[f"ship_{i}_command"].bind("click", place_ship)
+    
+# Attach the event listener to all dropdowns
+for i in range(1, 7):
+    document[f"orientation-{i}"].bind("change", update_orientation)
+
+document['start_battle'].bind('click', start_battle)
+document['restart_game'].bind('click', restart_game)
+
+document['quit_button'].bind('click', quit)
+
+computer_deployment()
+
+</script>
+
+</body>
+</html>   

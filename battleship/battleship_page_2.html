@@ -809,35 +809,6 @@ def start_battle(eent):
         
             computer_deploy_bomb()
 
-def computer_deploy_bomb_old():
-    global computer_bomb_deployment, computer_hits
-
-    # Generate a random position
-    row = random.randint(1, 20)
-    col = random.randint(1, 20)
-    position = (row, col)
-    
-    # Ensure the position hasn't already been bombed
-    if position not in computer_bomb_deployment:
-
-        # Add position to bomb deployment tracking
-        computer_bomb_deployment.add(position)
-        
-        # Get the grid cell element
-        cell = document[f"R{row}C{col}"]
-        
-        # Check if it's a hit
-        if position in player_occupied_cells:
-            cell.style["background-image"] = f"url('./img/bomb_2.png')"
-            computer_hits.add(position)
-        else:
-            cell.style["background-image"] = f"url('./img/bomb_1.png')"
-
-    # Check for victory
-    if computer_hits == player_occupied_cells:
-        alert("Computer wins!")
-        window.location.reload()
-
 def computer_deploy_bomb():
     global computer_bomb_deployment, computer_hits, target_queue
 
